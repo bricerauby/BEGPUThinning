@@ -15,6 +15,7 @@
 #include <limits>
 #include "Structs.h"
 #include <algorithm>
+#include <cstring>
 #include "LibThinning3D.h"
 
 using namespace std;
@@ -31,6 +32,8 @@ unsigned int CenterlineExtraction(PixelType *data, int width, int height, int de
 	int nelems = pwidth*pheight*pdepth;
 	bool *ivol = new bool[nelems];
 	bool *ovol = new bool[nelems];
+	// zero the padding: only the width x height x depth region is copied below
+	memset(ivol, 0, sizeof(bool) * nelems);
 
 	bool *t_ptr = ivol;
 	PixelType *s_ptr = data;

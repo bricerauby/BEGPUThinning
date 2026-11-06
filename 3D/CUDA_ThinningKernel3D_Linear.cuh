@@ -754,31 +754,37 @@ __global__ void __launch_bounds__(1024) ThinningKernel3DLinearBlock(unsigned sho
 
 		// Eliminate Up Boundary Points
 		GENERATE_BLOCK_MASK(Up)
+		__syncthreads(); // all threads finish reading neighbours before any writes
 		WriteShareData(data, val);
 		__syncthreads();
 
 		// Eliminate North Boundary Points
 		GENERATE_BLOCK_MASK(North)
+		__syncthreads(); // all threads finish reading neighbours before any writes
 		WriteShareData(data, val);
 		__syncthreads();
 
 		// Eliminate East Boundary Points
 		GENERATE_BLOCK_MASK(East)
+		__syncthreads(); // all threads finish reading neighbours before any writes
 		WriteShareData(data, val);
 		__syncthreads();
 
 		// Eliminate Down Boundary Points
 		GENERATE_BLOCK_MASK(Down)
+		__syncthreads(); // all threads finish reading neighbours before any writes
 		WriteShareData(data, val);
 		__syncthreads();
 
 		// Eliminate South Boundary Points
 		GENERATE_BLOCK_MASK(South)
+		__syncthreads(); // all threads finish reading neighbours before any writes
 		WriteShareData(data, val);
 		__syncthreads();
 
 		// Eliminate West Boundary Points
 		GENERATE_BLOCK_MASK(West)
+		__syncthreads(); // all threads finish reading neighbours before any writes
 		WriteShareData(data, val);
 
 
